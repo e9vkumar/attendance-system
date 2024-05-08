@@ -13,3 +13,9 @@ def base(request):
 
 def home(request):
     return render(request=request,template_name="homepage.html")
+
+def checkin(request):
+    return render(request=request,template_name="checkin.html")
+
+def request_leave(request):
+    return render(request=request,template_name="request.html")

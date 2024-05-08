@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block styles%}
+<style>
+    .checkin-main{
+        height:70vh;
+        display:flex;
+        flex-direction:column;
+        gap:50px;
+    }
+    .checkin-main *{
+        color:white;
+    } 
+    .info{
+        display:flex;
+        gap:300px;
+    }
+    .buttons{
+        margin-top:100px;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center checkin-main">
+    <img class="d-block mx-auto mb-4" src="{% static 'logo.png' %}" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold text-body-emphasis">Mark Your Attendance</h1>
+    <div class="col-lg-6 mx-auto main">
+    <div class="info">
+    <div >
+      <p class="lead mb-4">NAME:{{data.name}}</p>
+      <p class="lead mb-4">DATE:{{ today|date:"Y-m-d"}}</p>
+      </div>
+      <div >
+      <p class="lead mb-4">TIME:{{data.time}}</p>
+      <p class="lead mb-4">STATUS:{{data.status}}</p>
+        </div>
+        </div>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center buttons">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Mark Your Attendance</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Request A Leave</button>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
