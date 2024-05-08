@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block styles%}
+<style>
+    .main-area {
+     display:flex;
+     flex-direction:column;
+     color:white;
+     justify-content:center;   
+     align-items:center;
+     height:90vh;
+    }
+    #text-animate {
+      text-align:center;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="px-3 main-area" >
+    <h1>ATTENDANCE SYSTEM</h1>
+    <p class="lead" id="text-animate"></p>
+    <p class="lead" style="border-top:350px;">
+      <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Lets get you Checked-In</a>
+    </p>
+  </main>
+{% endblock content %}
+
+{% block scriptjs %}
+<script>
+var i = 0;
+var txt = "APP_NAME is a smart way of managing attendance for an organization.marking your attendance and \
+ Feel Free to explore all the features. Manage your Teams with never before ease,Dont forget to mark yours first!";
+var speed = 50;
+{% comment %} document.getElementById("text-animate").innerHTML = "";           {% endcomment %}
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("text-animate").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+document.addEventListener("DOMContent-Loaded",typeWriter());
+</script>
+{% endblock scriptjs %}
