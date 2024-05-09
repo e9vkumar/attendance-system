@@ -1,152 +1,72 @@
 {% extends "base.html" %}
+{% comment %} {%  load "custom_tags" %} {% endcomment %}
 
-{% block styles%}
+{% block styles %}
 <style>
-    .main-area {
-     display:flex;
-     flex-direction:column;
-     color:white;
-     justify-content:center;   
-     align-items:center;
-     height:90vh;
+    .header-main *{
+      color:white
     }
 
-    .table-data *{
+    .data-table {
+      height:60vh;
+    }
+
+    td ,th{
       color:white;
     }
 
-    #text-animate {
-      text-align:center;
+    .today {
+      background:green;
+    }
+
+    .row-element{
+      height:50px;
     }
 
 </style>
 {% endblock %}
 
 {% block content %}
+<div class="px-4 py-5 my-5 text-center header-main">
+    <h1 class="display-5 fw-bold text-body-emphasis">ATTENDANCE MANAGER</h1>
+    <div class="col-lg-6 mx-auto">
+    </div>
+  </div>
   <div class="table-responsive small data-table">
-        <table class="table table-striped table-sm">
+        <table class="table table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
+            <th>Employee Name</th>
+            <th>Employee ID</th>
+              {% for date in date_tuple %}
+              {% if date == today %}
+              <th class="date-block" style="background-color:green;">Today({{date}})</th>
+              {% else %}
+              <th class="date-block" >{{date}}</th>
+              {% endif %}
+              {%  endfor %}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
+          {% for employee in data %}
+            <tr class="row-element">
+              <td >{{employee.employee_name}}</td>
+              <td >{{employee.employee_id}}</td>
+              {% comment %} employee.employee_id|func_caller:"lower":"upper" {% endcomment %}
+              {% for record in date_tuple %}
+              <td class="selector">
+              <select name="status" class="status-selector">
+              <option value="Present">Present</option>
+              <option value="Vacation">Vacation</option>
+              <option value="Late">Late</option>
+              <option value="Sick">Sick</option>
+              </select>
+              </td>
+              {% endfor %}
             </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>text</td>
-              <td>random</td>
-              <td>layout</td>
-              <td>dashboard</td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td>placeholder</td>
-            </tr>
-            <tr>
-              <td>1,006</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,007</td>
-              <td>placeholder</td>
-              <td>tabular</td>
-              <td>information</td>
-              <td>irrelevant</td>
-            </tr>
-            <tr>
-              <td>1,008</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-            <tr>
-              <td>1,009</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
-            <tr>
-              <td>1,010</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-            </tr>
-            <tr>
-              <td>1,011</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,012</td>
-              <td>text</td>
-              <td>placeholder</td>
-              <td>layout</td>
-              <td>dashboard</td>
-            </tr>
-            <tr>
-              <td>1,013</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td>visual</td>
-            </tr>
-            <tr>
-              <td>1,014</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,015</td>
-              <td>random</td>
-              <td>tabular</td>
-              <td>information</td>
-              <td>text</td>
-            </tr>
+            
+            {% endfor %}
+
           </tbody>
         </table>
       </div>
