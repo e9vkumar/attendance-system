@@ -53,7 +53,9 @@
               <td >{{employee.employee_name}}</td>
               <td >{{employee.employee_id}}</td>
               {% comment %} employee.employee_id|func_caller:"lower":"upper" {% endcomment %}
-              {% for record in date_tuple %}
+              {% comment %} {% for record in attendance_data %} {% endcomment %}
+              {% emp_data = attendance_data["{{employee.employee_id}}"] %}
+              
               <td class="selector">
               <select name="status" class="status-selector">
               <option value="Present">Present</option>

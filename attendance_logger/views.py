@@ -13,7 +13,7 @@ def base(request):
     return render(request=request,template_name="base.html")
 
 def filter_record(id,lower_range,upper_range):
-    data = AttendanceRecord.objects.filter(employee_id=id,date__lte=upper_range,date__gte=lower_range).values("attendance_status")
+    data = AttendanceRecord.objects.filter(employee_id=id,date__lte=upper_range,date__gte=lower_range).values("attendance_status","date")
     return data
 
 def home(request):
@@ -26,7 +26,12 @@ def home(request):
         date_list.append(start_date.strftime('%d/%m/%Y'))
         start_date += datetime.timedelta(days=1)
     # print(date_list)
-    send_data = {'data':data,'date_tuple':tuple(date_list),'today':today.strftime('%d/%m/%Y'),'lower':lower_range,'upper':upper_range}
+    data_dict = {}
+    for item in data:
+        data_dict[item['employee_id']]=filter_record(item['employee_id'],lower_range=lower_range,upper_range=upper_range)
+    print(data_dict['01'])
+
+    send_data = {'data':data,'date_tuple':tuple(date_list),'today':today.strftime('%d/%m/%Y'),'lower':lower_range,'upper':upper_range,"attendance_data":data_dict}
     return render(request=request,template_name="homepage.html",context=send_data)
 
 def checkin(request):
