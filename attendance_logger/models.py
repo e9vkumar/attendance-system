@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 def get_choices():
-    choices = {("P","Present"),("V","Vacation"),("L","Late"),("S","Sick")}
+    choices = {("U","Unmarked"),("P","Present"),("V","Vacation"),("L","Late"),("S","Sick")}
     return choices
 
 class AttendanceRecord(models.Model):
@@ -14,3 +14,7 @@ class AttendanceRecord(models.Model):
 
     def __str__(self):
         return self.employee_name
+    
+    def get_status_for_date(self):
+        data = AttendanceRecord.objects.get(employee_id=self.employee_id,date=self.date).attendance_status
+        return data

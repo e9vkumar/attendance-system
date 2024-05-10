@@ -22,13 +22,19 @@
     .row-element{
       height:50px;
     }
+    p {
+      color:white;
+    }
+    .title-main {
+      align:top;
+    }
 
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="px-4 py-5 my-5 text-center header-main">
-    <h1 class="display-5 fw-bold text-body-emphasis">ATTENDANCE MANAGER</h1>
+    <h1 class="display-5 fw-bold text-body-emphasis title-main">ATTENDANCE MANAGER</h1>
     <div class="col-lg-6 mx-auto">
     </div>
   </div>
@@ -48,24 +54,19 @@
             </tr>
           </thead>
           <tbody>
-          {% for employee in data %}
+          {% for attendance in data %}
             <tr class="row-element">
-              <td >{{employee.employee_name}}</td>
-              <td >{{employee.employee_id}}</td>
+            <td>{{attendance.employee_name}}</td>
+            <td>{{attendance.employee_id}}</td>
               {% for date in date_tuple %}
-
-              <td class="selector">
+              <td class="selector" id="my_select">
               <select name="status" class="status-selector">
               {% for option in options %}
-              <option value="{{option.value}}">{{option.label}}</option>
+              <option 
+              value="{{option.value}}"
+              {% if attendance.get_status_for_date == "{{option.value}}" %} selected style="background:black;"{% endif %}
+              > {{option.label}}</option>
               {% endfor %}
-              {% for record in attendance_data.employee.employee_id %}
-              {% if record.date == date %}
-              <option value="{{attendance_status}}" selected>{{attendance_status}}</option>
-              {%endif%}
-              
-              {% endfor %}
-
               </select>
               </td>
               {% endfor %}
@@ -79,10 +80,16 @@
 {% endblock content %}
 
 {% block scriptjs %}
-<script>
 
+<script>
+console.log("heyy");
+  document.addEventListener("DOMContentLoaded",function(){
+    var selectelement = document.getElementById("my_select");
+    var selectedValue = attendance_data.employee.employee_id;
+    selectelement.value = selectedValue;
+  })
 </script>
 {% endblock scriptjs %}
 
 
-   
+   {% comment %}    {% endcomment %}
