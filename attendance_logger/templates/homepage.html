@@ -52,16 +52,20 @@
             <tr class="row-element">
               <td >{{employee.employee_name}}</td>
               <td >{{employee.employee_id}}</td>
-              {% comment %} employee.employee_id|func_caller:"lower":"upper" {% endcomment %}
-              {% comment %} {% for record in attendance_data %} {% endcomment %}
-              {% emp_data = attendance_data["{{employee.employee_id}}"] %}
-              
+              {% for date in date_tuple %}
+
               <td class="selector">
               <select name="status" class="status-selector">
-              <option value="Present">Present</option>
-              <option value="Vacation">Vacation</option>
-              <option value="Late">Late</option>
-              <option value="Sick">Sick</option>
+              {% for option in options %}
+              <option value="{{option.value}}">{{option.label}}</option>
+              {% endfor %}
+              {% for record in attendance_data.employee.employee_id %}
+              {% if record.date == date %}
+              <option value="{{attendance_status}}" selected>{{attendance_status}}</option>
+              {%endif%}
+              
+              {% endfor %}
+
               </select>
               </td>
               {% endfor %}
@@ -79,3 +83,6 @@
 
 </script>
 {% endblock scriptjs %}
+
+
+   

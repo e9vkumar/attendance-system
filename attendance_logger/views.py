@@ -14,6 +14,8 @@ def base(request):
 
 def filter_record(id,lower_range,upper_range):
     data = AttendanceRecord.objects.filter(employee_id=id,date__lte=upper_range,date__gte=lower_range).values("attendance_status","date")
+    for element in data:
+        element["date"] = element["date"].strftime('%d/%m/%Y') 
     return data
 
 def home(request):
@@ -29,9 +31,10 @@ def home(request):
     data_dict = {}
     for item in data:
         data_dict[item['employee_id']]=filter_record(item['employee_id'],lower_range=lower_range,upper_range=upper_range)
-    print(data_dict['01'])
+    print(data_dict['02'])
+    options = [{'value':'P','label':'Present'},{'value':'V','label':'Vacation'},{'value':'S','label':'Sick'},{'value':'L','label':'Late'}]
 
-    send_data = {'data':data,'date_tuple':tuple(date_list),'today':today.strftime('%d/%m/%Y'),'lower':lower_range,'upper':upper_range,"attendance_data":data_dict}
+    send_data = {'data':data,'date_tuple':tuple(date_list),'today':today.strftime('%d/%m/%Y'),'lower':lower_range,'upper':upper_range,"attendance_data":data_dict,"options":options}
     return render(request=request,template_name="homepage.html",context=send_data)
 
 def checkin(request):
@@ -39,3 +42,22 @@ def checkin(request):
 
 def request_leave(request):
     return render(request=request,template_name="request.html")
+
+
+
+
+
+
+        #    {% comment %} <option value="Present">Present</option>
+        #       <option value="Vacation">Vacation</option>
+        #       <option value="Late">Late</option>
+        #       <option value="Sick">Sick</option> {% endcomment %}
+        #       {% comment %} {% if record.attendance_status == options.value%}
+        #       <option value="{{options.value}}">{{options.label}}</option>
+        #       {% endif %} {% endcomment %}
+        #       {% comment %} {% else %} {% endcomment %}
+        #       {% comment %} <option value="">Select an Option</option> {% endcomment %}
+        #       {% comment %} {% endif %} {% endcomment %}
+        #                     {% comment %} {% for record in attendance_data.employee.employee_id %} {% endcomment %}
+        #       {% comment %} {% if record.date == date %}    {% endcomment %}
+        #       {% endfor %}
