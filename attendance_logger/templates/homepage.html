@@ -1,82 +1,569 @@
 {% extends "base.html" %}
-{% comment %} {%  load "custom_tags" %} {% endcomment %}
+{% load custom_tags %}
 
 {% block styles %}
 <style>
-    .header-main *{
-      color:white
-    }
+ * {
+  color:black;
+ }
 
-    .data-table {
-      height:60vh;
-    }
+ .main-div {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap:50px;
+  width:100%;
+  height:85vh
+ }
 
-    td ,th{
-      color:white;
-    }
+.main-heading {
+  color:black;
+}
 
-    .today {
-      background:green;
-    }
+.main-table-header{
+  background-color: CDE8E5;
+ }
 
-    .row-element{
-      height:50px;
-    }
-    p {
-      color:white;
-    }
-    .title-main {
-      align:top;
-    }
+ .main-table-header *{
+  color:black;
+ }
+
+.past-dates{
+color: black;
+}
+
+.today{
+color: green;
+}
+
+.future-dates{
+color:black;
+}
+
+ .main-table {
+  width:100%;
+ }
+
+
+.table-body-rows *{
+  color: black;
+}
+.status-selector{
+  color: black;
+}
+
 
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="px-4 py-5 my-5 text-center header-main">
-    <h1 class="display-5 fw-bold text-body-emphasis title-main">ATTENDANCE MANAGER</h1>
-    <div class="col-lg-6 mx-auto">
-    </div>
+<div class="main-div">
+  <div>
+    <h1 class="main-heading">ATTENDANCE MANAGER</h1>
   </div>
-  <div class="table-responsive small data-table">
-        <table class="table table-sm">
-          <thead>
-            <tr>
-            <th>Employee Name</th>
-            <th>Employee ID</th>
-              {% for date in date_tuple %}
-              {% if date == today %}
-              <th class="date-block" style="background-color:green;">Today({{date}})</th>
-              {% else %}
-              <th class="date-block" >{{date}}</th>
-              {% endif %}
-              {%  endfor %}
-            </tr>
-          </thead>
-          <tbody>
-          {% for attendance in data %}
-            <tr class="row-element">
-            <td>{{attendance.employee_name}}</td>
-            <td>{{attendance.employee_id}}</td>
-              {% for date in date_tuple %}
-              <td class="selector" id="my_select">
-              <select name="status" class="status-selector">
-              {% for option in options %}
-              <option 
-              value="{{option.value}}"
-              {% if attendance.get_status_for_date == "{{option.value}}" %} selected style="background:black;"{% endif %}
-              > {{option.label}}</option>
-              {% endfor %}
-              </select>
-              </td>
-              {% endfor %}
-            </tr>
-            
-            {% endfor %}
-
-          </tbody>
-        </table>
-      </div>
+  <div>
+    <table class="table main-table">
+      <thead class="main-table-header">
+        <tr>
+          <th>Employee Name</th>
+          <!-- <th>Employee ID</th> -->
+          <th class="past-dates">04 May 24</th>
+          <th class="past-dates">05 May 24</th>
+          <th class="past-dates">06 May 24</th>
+          <th class="past-dates">07 May 24</th>
+          <th class="past-dates">08 May 24</th>
+          <th class="past-dates">09 May 24</th>
+          <th class="past-dates">10 May 24</th>
+          <th class="past-dates">11 May 24</th>
+          <th class="past-dates">12 May 24</th>
+          <th class="today">13 May 24</th>
+          <th class="future-dates">14 May 24</th>
+          <th class="future-dates">15 May 24</th>
+          <th class="future-dates">16 May 24</th>
+          <th class="future-dates">17 May 24</th>
+          <th class="future-dates">18 May 24</th>
+          <th class="future-dates">19 May 24</th>
+          <th class="future-dates">20 May 24</th>
+          <th class="future-dates">21 May 24</th>
+          <th class="future-dates">22 May 24</th>
+        </tr>
+      </thead>
+      <tbody class="main-table-body">
+        <tr class="table-body-rows">
+          <td>vk</td>
+          <!-- <td>01</td> -->
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+        </tr>
+        <tr class="table-body-rows">
+          <td>mg</td>
+          <!-- <td>02</td> -->
+          
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+        <tr class="table-body-rows">
+          <td>va</td>
+          <!-- <td>03</td> -->
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+        <tr class="table-body-rows">
+          <td>sg</td>
+          <!-- <td>04</td> -->
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+          <td><select name="status" class="status-selector">
+            <option value="Present">P</option>
+            <option value="Vacation">V</option>
+            <option value="Late">L</option>
+            <option value="Sick">S</option>
+            </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+            <td><select name="status" class="status-selector">
+              <option value="Present">P</option>
+              <option value="Vacation">V</option>
+              <option value="Late">L</option>
+              <option value="Sick">S</option>
+              </select></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock content %}
 
 {% block scriptjs %}
@@ -90,6 +577,3 @@ console.log("heyy");
   })
 </script>
 {% endblock scriptjs %}
-
-
-   {% comment %}    {% endcomment %}

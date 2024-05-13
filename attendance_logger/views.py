@@ -13,6 +13,7 @@ def base(request):
     return render(request=request,template_name="base.html")
 
 
+
 def home(request):
     today = datetime.date.today()
     lower_range,upper_range = today - datetime.timedelta(days=5),today + datetime.timedelta(days=5)
@@ -32,34 +33,13 @@ def home(request):
     return  render(request=request,template_name="homepage.html",context={"data":data, "date_tuple":date_list,"options":options})
 
 
-
-
-
 def history(request):
     data = [
         {'x':10,'y':20,'value':5},
         {'x':30,'y':40,'value':10}
     ]
-    return render(request=request,template_name="history.html",context={"hmdata":data})
+    return render(request=request,template_name="history.html",context={"data":data})
 
 def request_leave(request):
     return render(request=request,template_name="request.html")
 
-
-
-
-
-
-        #    {% comment %} <option value="Present">Present</option>
-        #       <option value="Vacation">Vacation</option>
-        #       <option value="Late">Late</option>
-        #       <option value="Sick">Sick</option> {% endcomment %}
-        #       {% comment %} {% if record.attendance_status == options.value%}
-        #       <option value="{{options.value}}">{{options.label}}</option>
-        #       {% endif %} {% endcomment %}
-        #       {% comment %} {% else %} {% endcomment %}
-        #       {% comment %} <option value="">Select an Option</option> {% endcomment %}
-        #       {% comment %} {% endif %} {% endcomment %}
-        #                     {% comment %} {% for record in attendance_data.employee.employee_id %} {% endcomment %}
-        #       {% comment %} {% if record.date == date %}    {% endcomment %}
-        #       {% endfor %}
