@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import AttendanceRecord
-import datetime
+import datetime 
+# date,timedelta
 # Create your views here.
 
 def register(request):
@@ -14,23 +15,26 @@ def base(request):
 
 
 def home(request):
+    employee_names = AttendanceRecord.objects.all().values("employee_name")
     today = datetime.date.today()
-    lower_range,upper_range = today - datetime.timedelta(days=5),today + datetime.timedelta(days=5)
-    date_list = []
-    start_date = lower_range
-    while start_date <= upper_range:
-        date_list.append(start_date.strftime('%d/%m/%Y'))
-        start_date += datetime.timedelta(days=1)
-    data = AttendanceRecord.objects.all()
-    options = [
-        {'value':'U','label':'Unmarked'},
-        {'value':'P','label':'Present'},
-        {'value':'V','label':'Vacation'},
-        {'value':'S','label':'Sick'},
-        {'value':'L','label':'Late'}
-    ]
-    return  render(request=request,template_name="homepage.html",context={"data":data, "date_tuple":date_list,"options":options})
+    past_dates = [today - datetime.timedelta(days=i) for i in range(5, 0, -1)]
+    future_dates = [today + datetime.timedelta(days=i) for i in range(1, 6)]
+    print(employee_names)
+    attendance_data = {}
+    for employee_name in employee_names:
+        attendance_data[employee_name] = {}
+        for date in past_dates + [today] + future_dates:
+            attendance= Attendance.objects.filter(employee_name=employee_name)
+            attendance_data[employee_name][date] = attendance.attendance_status
 
+    context = {
+        'employees': employee_names,
+        'today': today,
+        'past_dates': past_dates,
+        'future_dates': future_dates,
+        'attendance_data': attendance_data
+    }
+    return render(request, 'homepage.html', context)
 
 
 
