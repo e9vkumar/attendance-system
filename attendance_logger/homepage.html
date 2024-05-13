@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% comment %} {%  load "custom_tags" %} {% endcomment %}
+
+{% block styles %}
+<style>
+    .header-main *{
+      color:white
+    }
+
+    .data-table {
+      height:60vh;
+    }
+
+    td ,th{
+      color:white;
+    }
+
+    .today {
+      background:green;
+    }
+
+    .row-element{
+      height:50px;
+    }
+    p {
+      color:white;
+    }
+    .title-main {
+      align:top;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center header-main">
+    <h1 class="display-5 fw-bold text-body-emphasis title-main">ATTENDANCE MANAGER</h1>
+    <div class="col-lg-6 mx-auto">
+    </div>
+  </div>
+  <div class="table-responsive small data-table">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+                <th>Name</th>
+                {% for date in past_dates %}
+                <th>{{ date }}</th>
+                {% endfor %}
+                <th>{{ today }}</th>
+                {% for date in future_dates %}
+                <th>{{ date }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee_name in employee_names %}
+            <tr>
+                <td>{{ employee_name }}</td>
+                {% for date in past_dates + [today] + future_dates %}
+                <td>
+                    <select name="attendance_{{ employee.id }}_{{ date }}">
+                        <option value="Absent" {% if attendance_data[employee_name][date] == "Absent" %}selected{% endif %}>Absent</option>
+                        <option value="Present" {% if attendance_data[employee_name][date] == 'Present' %}selected{% endif %}>Present</option>
+                        <option value="Late" {% if attendance_data[employee_name][date] == 'Late' %}selected{% endif %}>Late</option>
+                    </select>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+      </div>
+{% endblock content %}
+
+{% block scriptjs %}
+
+<script>
+console.log("heyy");
+  document.addEventListener("DOMContentLoaded",function(){
+    var selectelement = document.getElementById("my_select");
+    var selectedValue = attendance_data.employee.employee_id;
+    selectelement.value = selectedValue;
+  })
+</script>
+{% endblock scriptjs %}
+
+
+   {% comment %}    {% endcomment %}
