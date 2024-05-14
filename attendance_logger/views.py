@@ -30,7 +30,7 @@ def home(request):
         {'value':'S','label':'Sick'},
         {'value':'L','label':'Late'}
     ]
-    return  render(request=request,template_name="homepage.html",context={"data":data, "date_tuple":date_list,"options":options})
+    return  render(request=request,template_name="homepage2.html",context={"data":data, "date_tuple":date_list,"options":options})
 
 
 def history(request):
