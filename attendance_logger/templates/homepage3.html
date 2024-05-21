@@ -150,6 +150,10 @@
             </div>
             <div class="table-head">
             <div>Employee<br>Name</div>
+            {% for date in date_tuple %}
+            <div>{{date.day}}<br>{{date.date}}</div>
+            {% endfor %}
+            {% comment %} 
             <div>Wednesday<br>15</div>
             <div>Thursday<br>16</div>
             <div>Friday<br>17</div>
@@ -159,12 +163,14 @@
             <div>Tuesday<br>21</div>
             <div>Wednesday<br>22</div>
             <div>Thursday<br>23</div>
-            <div>Friday <br>24</div>
-            <div>Saturday<br>25</div>
-        </div>
+            <div>Friday <br>24</div> {% endcomment %}
+            {% comment %} <div>Saturday<br>25</div> {% endcomment %}
+              </div>        
             <div class="table-data">
+            {% for Employee in data %}
                 <div class="row">
-                    <div class="entry name">VK</div>
+                    <div class="entry name">{{Employee.employee_name}}</div>
+                    {% for date in date_tuple %}
                     <div class="entry">
                       <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
                         <option selected>Select</option>
@@ -174,305 +180,13 @@
                         <option value="vacation">Vacation</option>
                       </select>
                     </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
+                    {% endfor %}
+                    
+ 
                 </div>
-                <div class="row">
-                    <div class="entry name">ABC</div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="entry name">XYZ</div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                    <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)"    aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
-                        <option value="late">Late</option>
-                        <option value="sick">Sick</option>
-                        <option value="vacation">Vacation</option>
-                      </select>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
-        </div>
-        </div>
       
     </div>
     <script>

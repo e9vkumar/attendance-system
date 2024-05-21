@@ -20,7 +20,7 @@ def home(request):
     date_list = []
     start_date = lower_range
     while start_date <= upper_range:
-        date_list.append(start_date.strftime('%d/%m/%Y'))
+        date_list.append({"day":start_date.strftime('%A'),"date":start_date.strftime('%d/%m/%Y')})
         start_date += datetime.timedelta(days=1)
     data = AttendanceRecord.objects.all()
     options = [
@@ -30,6 +30,7 @@ def home(request):
         {'value':'S','label':'Sick'},
         {'value':'L','label':'Late'}
     ]
+    print(date_list)
     return  render(request=request,template_name="homepage3.html",context={"data":data, "date_tuple":date_list,"options":options})
 
 
