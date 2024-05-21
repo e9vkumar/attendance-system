@@ -1,0 +1,510 @@
+<head>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <style>
+    .main-page{
+        display: grid;
+        grid-template-columns: 2fr 10fr;
+    }
+    .sidebar-main{
+        height:100vh;
+    }
+    .page-content{
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      margin: 30px 50px ;
+      color: black;
+    }
+    .top-header{
+      display: flex;
+      justify-content: space-between;
+    }
+    .name-and-icon{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .table-main{
+        display: flex;
+        flex-direction: column;
+        /* gap: 10px; */
+        width: 100%;
+    }
+    .month{
+        display: grid;
+        grid-template-columns: repeat(3,auto);
+        background-color: white;
+        /* color:white;  */
+        font-size: 2rem;
+        justify-items: center;
+        font-weight: bolder;
+        margin-bottom: 20px;
+    }
+    /* .month *{
+        border: 2px solid black;
+    } */
+    button{
+        background-color: white;
+        border: 0;
+        height: 100%;
+        width: 100%;
+    }
+    .table-head{
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        background-color: black;
+        color:white; 
+        font-weight: bolder;
+        border: 1px solid black;
+        /* align-content: center; */
+        /* justify-content: center; */
+        justify-items: center;
+        /* align-items: center; */
+        width: 100%;
+    }
+    .row{
+        margin-left: 2px;
+        margin-right:2px;
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: 50px;
+        align-items: center;
+        justify-items: center;
+        border-bottom: 1px solid black;
+        height: 50px;
+        /* width: 100%; */
+
+    }
+    
+    .table-head .today{
+        color: greenyellow;
+    }
+    .entry .dropdown>button{
+      background-color: whitesmoke;
+      color: black;
+    }
+    </style>
+    <div class="main-page">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark bg-dark sidebar-main" >
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none name-and-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+              </svg>
+
+              <span class="fs-4">Attendance manager</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">
+                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                  Dashboard
+                </a>
+              </li>
+            </ul>
+            <hr>
+          </div>
+        <div class="page-content">
+          <div class="top-header">
+            <h1>The main heading!</h1>
+            <div class="name-and-icon">
+              <p>PERSON NAME</p>
+              <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                  </svg>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="table-main">
+            <div class="month">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12"/>
+                      </svg>
+                </button>
+                <p>MAY 2024</p>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4z"/>
+                      </svg>
+                </button>
+            </div>
+            <div class="table-head">
+            <div>Employee<br>Name</div>
+            <div>Wednesday<br>15</div>
+            <div>Thursday<br>16</div>
+            <div>Friday<br>17</div>
+            <div>Saturday<br>18</div>
+            <div>Sunday<br>19</div>
+            <div class="today">Monday<br>20</div>
+            <div>Tuesday<br>21</div>
+            <div>Wednesday<br>22</div>
+            <div>Thursday<br>23</div>
+            <div>Friday <br>24</div>
+            <div>Saturday<br>25</div>
+        </div>
+            <div class="table-data">
+                <div class="row">
+                    <div class="entry name">VK</div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="entry name">ABC</div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="entry name">XYZ</div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                    <div class="entry">
+                      <select class="form-select" onchange="changecolor(this)"    aria-label="Default select example">
+                        <option selected>Select</option>
+                        <option value="present">Present</option>
+                        <option value="late">Late</option>
+                        <option value="sick">Sick</option>
+                        <option value="vacation">Vacation</option>
+                      </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+      
+    </div>
+    <script>
+
+      function changecolor(item){
+        var val = item.value;
+            if(val=="present"){
+              item.style="background-color:green;color:white;";
+            }
+            else if(val=="late"){
+              item.style="background-color:red;color:white;";
+            }
+            else if(val=="vacation"){
+              item.style="background-color:5AB2FF;color:black;";
+            }
+            else if(val=="sick"){
+              item.style="background-color:yellow;color:black;";
+            }
+          }
+      
+
+        document.addEventListener("DOMContentLoaded",function(){
+          var dropdownlist = document.querySelectorAll(".form-select");
+          console.log(dropdownlist);
+
+          dropdownlist.forEach((item)=>{
+            // console.log(item.value);
+            // item.addEventListener('change',changecolor);
+            changecolor(item);
+
+          })
+
+        });
+    </script>
+</body>

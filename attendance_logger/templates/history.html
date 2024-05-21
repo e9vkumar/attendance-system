@@ -1,184 +1,114 @@
-{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
 {%  load static %}
 
 {% block head %}
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
 {% endblock head %}
 
 {% block styles%}
 <style>
-    .checkin-main{
-        height:90vh;
-        display:flex;
-        flex-direction:column;
-        gap:50px;
+    .main-page{
+        display: grid;
+        grid-template-columns: 2fr 10fr;
     }
-    .checkin-main *{
-        color:black;
-    } 
-    .info{
-        display:flex;
-        gap:300px;
+    .sidebar-main{
+        height:100vh;
     }
-    .buttons{
-        margin-top:100px;
+    .page-content{
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      margin: 30px 50px ;
+      color: black;
     }
-    .my_dataviz{
-      width:100%;
+    .top-header{
+      display: flex;
+      justify-content: space-between;
+    }
+    .name-and-icon{
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
 </style>
 {% endblock styles %}
 
 {% block content %}
+<div class="main-page">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark bg-dark sidebar-main" >
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none name-and-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+      </svg>
+
+      <span class="fs-4">Attendance manager</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Dashboard
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <!-- <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+        </svg>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div> -->
+  </div>
+<div class="page-content">
+  <div class="top-header">
+    <h1>The main heading!</h1>
+    <div class="name-and-icon">
+      <p>PERSON NAME</p>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+          </svg>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 <div class="px-4 py-5 my-5 text-center checkin-main">
-    <img class="d-block mx-auto mb-4" src="{% static 'logo.png' %}" alt="" width="72" height="57">
+    <!-- <img class="d-block mx-auto mb-4" src="{% static 'logo.png' %}" alt="" width="72" height="57"> -->
     <h1 class="display-5 fw-bold text-body-emphasis">Your Attendance History</h1>
     <div class="col-lg-6 mx-auto main">
-    <div class="info">
-    <div >
-      <p class="lead mb-4">NAME:{{data.name}}</p>
-      <p class="lead mb-4">DATE:{{ today|date:"Y-m-d"}}</p>
-      </div>
-      <div >
-      <p class="lead mb-4">TIME:{{data.time}}</p>
-      <p class="lead mb-4">STATUS:{{data.status}}</p>
-        </div>
-        </div>
-    </div>
-    <div id="my_dataviz"></div>
-  </div>
+    <div id="cal-heatmap"></div>
+</div>
 {% endblock content %}
 
 {% block scriptjs %}
 <script>
-
-// set the dimensions and margins of the graph
-var margin = {top: 80, right: 25, bottom: 30, left: 40},
-  width = 450 - margin.left - margin.right,
-  height = 450 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
-
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv", function(data) {
-
-  // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-  var myGroups = d3.map(data, function(d){return d.group;}).keys()
-  var myVars = d3.map(data, function(d){return d.variable;}).keys()
-
-  // Build X scales and axis:
-  var x = d3.time.scale()
-    .range([ 0, width ])
-    .domain([1,31])
-    .padding(0.05);
-
-  svg.append("g")
-    .style("font-size", 15)
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).tickSize(0))
-    .select(".domain").remove()
-
-  // Build Y scales and axis:
-  var y = d3.scaleBand()
-    .range([ height, 0 ])
-    .domain(["January","February","March","April","May","June","July","August","September","October","November","December"])
-    .padding(0.05);
-  svg.append("g")
-    .style("font-size", 15)
-    .call(d3.axisLeft(y).tickSize(0))
-    .select(".domain").remove()
-
-  // Build color scale
-  var myColor = d3.scaleOrdinal()
-    .range(["green","red","white","blue"])
-    .domain([1,100])
-
-  // create a tooltip
-  var tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "black")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
-
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    tooltip
-      .style("opacity", 1)
-    d3.select(this)
-      .style("stroke", "black")
-      .style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    tooltip
-      .html("The exact value of<br>this cell is: " + d.value)
-      .style("left", (d3.mouse(this)[0]+770) + "px")
-      .style("top", (d3.mouse(this)[1] + 600) + "px")
-      .style("color","black")
-  }
-  var mouseleave = function(d) {
-    tooltip
-      .style("opacity", 0)
-    d3.select(this)
-      .style("stroke", "none")
-      .style("opacity", 0.8)
-  }
-
-  // add the squares
-  svg.selectAll()
-    .data(data, function(d) {return d.group+':'+d.variable;})
-    .enter()
-    .append("rect")
-      .attr("x", function(d) { return x(d.group) })
-      .attr("y", function(d) { return y(d.variable) })
-      .attr("rx", 4)
-      .attr("ry", 4)
-      .attr("width", x.bandwidth() )
-      .attr("height", y.bandwidth() )
-      .style("fill", function(d) { return myColor(d.value)} )
-      .style("stroke-width", 4)
-      .style("stroke", "none")
-      .style("opacity", 0.8)
-    .on("mouseover", mouseover)
-    .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave)
-})
-
-// Add title to graph
-svg.append("text")
-        .attr("x", 0)
-        .attr("y", -50)
-        .attr("text-anchor", "left")
-        .style("fill", "black")
-        .style("font-size", "22px")
-        .text("Your Attendance Graph!");
-
-// Add subtitle to graph
-svg.append("text")
-        .attr("x", 0)
-        .attr("y", -20)
-        .attr("text-anchor", "left")
-        .style("font-size", "14px")
-        .style("fill", "black")
-        .style("max-width", 400)
-        .text("This is Your current attendance status.");
-
-
+import {Calendar} from "@d3/calendar"
+console.log("works");
 </script>
- 
 {% endblock scriptjs %}
 
