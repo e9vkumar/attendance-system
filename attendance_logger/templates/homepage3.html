@@ -108,7 +108,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link text-white">
+                <a href="{% url 'attendance_logger:history' %}" class="nav-link text-white">
                   <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                   Dashboard
                 </a>
@@ -167,22 +167,44 @@
             {% comment %} <div>Saturday<br>25</div> {% endcomment %}
               </div>        
             <div class="table-data">
-            {% for Employee in data %}
+            {% comment %} <h1>{{data_dict}}</h1> {% endcomment %}
+            {% for name in data_dict %}
+            <h1>{{name}}</h1>
                 <div class="row">
-                    <div class="entry name">{{Employee.employee_name}}</div>
-                    {% for date in date_tuple %}
+                    {% comment %} <div class="entry name">{{name}}</div> {% endcomment %}
+                    {% comment %} {% for date in date_tuple %} {% endcomment %}
+                    {% comment %} {% if entry.date == date %} {% endcomment %}
                     <div class="entry">
-                      <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
-                        <option selected>Select</option>
-                        <option value="present">Present</option>
+                    {% comment %} <p>{{values}}</p> {% endcomment %}
+                      {% comment %} <select class="form-select" onchange="changecolor(this)" aria-label="Default select example">
+                        <option >Select</option>
+                        {% if entry.status == 'P' %}
+                        <option value="present" selected>Present</option>
+                        {% else %}
+                        <option value="present" >Present</option>
+                        {% endif %}
+
+                        {% if entry.status == 'L' %}
+                        <option value="late" selected >Late</option>
+                        {% else %}
                         <option value="late">Late</option>
+                        {% endif %}
+
+                        {% if entry.status == 'S' %}
+                        <option value="sick" selected >Sick</option>
+                        {% else %}
                         <option value="sick">Sick</option>
+                        {% endif %}
+
+                        {% if entry.status == 'V' %}
+                        <option value="vacation" selected>Vacation</option>
+                        {% else %}
                         <option value="vacation">Vacation</option>
-                      </select>
+                        {% endif %}
+                      </select> {% endcomment %}
                     </div>
-                    {% endfor %}
-                    
- 
+                    {% comment %} {% endif %} {% endcomment %}
+                    {% comment %} {% endfor %} {% endcomment %}
                 </div>
                 {% endfor %}
 
